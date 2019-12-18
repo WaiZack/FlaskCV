@@ -8,6 +8,7 @@ External libraries needed <br>
   <li>flask</li>
   <li>scikit-learn</li>
   <li>cvlib</li>
+  <li>tensorflow</li>
 </ol>
   
   
