@@ -1,4 +1,4 @@
-Python version <br>
+Python version <br><br>
 Python 3.6.8
 
 External libraries needed <br>
@@ -7,7 +7,7 @@ External libraries needed <br>
   <li>opencv</li>
   <li>flask</li>
   <li>scikit-learn</li>
-  <cvlib>
+  <li>cvlib</li>
 </ol>
   
   
