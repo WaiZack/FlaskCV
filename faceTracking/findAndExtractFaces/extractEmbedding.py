@@ -13,18 +13,16 @@ class ExtractEmbedding:
         baseConfidence = 0.5
 
         # Face Detector
-        protoPath = "static/PretrainedModels/deploy.prototxt.txt"
-        modelPath = "static/PretrainedModels/res10_300x300_ssd_iter_140000.caffemodel"
+        protoPath = "static/PretrainedModels/face/deploy.prototxt.txt"
+        modelPath = "static/PretrainedModels/face/res10_300x300_ssd_iter_140000.caffemodel"
         faceDetector = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
 
         # Face Embedder
-        embedder = cv2.dnn.readNetFromTorch("static/PretrainedModels/nn4.small2.v1.t7")
+        embedder = cv2.dnn.readNetFromTorch("static/PretrainedModels/face/nn4.small2.v1.t7")
 
         # Getting Training Images
         imageLocation = "static/TrainingFaces"
         imagePaths = list(paths.list_images(imageLocation))
-
-        # print(imagePaths)
 
         knownFaces = []
         knownNames = []

@@ -1,9 +1,48 @@
-<html>
-  <head>
-    <title>Test</title>
-  </head>
-  <body>
-    <h1>Test</h1>
-    <img src="{{ url_for('render')}}" width="300">
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Fast and Furious Front End Sample</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Home</a>
+    </div>
+</nav>
+
+<!-- Page Content -->
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <img src="{{ url_for('render') }}" class="img-fluid" align="centre">
+            </div>
+            <div class="col-4">
+                <h1>test</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="{{ url_for('static', filename='js/jquery.slim.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+
+</body>
+
 </html>

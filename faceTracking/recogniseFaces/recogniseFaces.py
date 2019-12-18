@@ -8,12 +8,12 @@ class RecogniseFaces:
     def __init__(self):
         self.baseConfidence = 0.5
         # Load face detector
-        protoPath = "static/PretrainedModels/deploy.prototxt.txt"
-        modelPath = "static/PretrainedModels/res10_300x300_ssd_iter_140000.caffemodel"
+        protoPath = "static/PretrainedModels/face/deploy.prototxt.txt"
+        modelPath = "static/PretrainedModels/face/res10_300x300_ssd_iter_140000.caffemodel"
         self.faceDetector = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
 
         # Load embedding extractor
-        self.embedder = cv2.dnn.readNetFromTorch("static/PretrainedModels/nn4.small2.v1.t7")
+        self.embedder = cv2.dnn.readNetFromTorch("static/PretrainedModels/face/nn4.small2.v1.t7")
 
         # Load recogniser & label encoder
         self.recogniser = pickle.loads(open("static/Recogniser/faceRecognitionModel.pickle", "rb").read())
