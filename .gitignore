@@ -1,2 +1,5 @@
 /venv/
 /venv2/
+/static/Embeddings/faceEmbeddings.pickle
+/static/LabelEncoder/labelEncoder.pickle
+/static/Recogniser/faceRecognitionModel.pickle
