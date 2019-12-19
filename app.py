@@ -13,7 +13,6 @@ from flask_socketio import SocketIO
 outputFrame = None
 lock = threading.Lock()
 nameFound = []
-wikiResults = []
 appearanceDict = {}
 
 app = Flask(__name__)
@@ -47,13 +46,6 @@ def detectFace():
             with lock:
                 outputFrame = faceFound.copy()
                 displayInfo(peopleInFrame)
-                #nameFound = peopleInFrame.copy()
-                # for person in peopleInFrame:
-                #   temp = nameDict.get(person)
-                #  if temp is None:
-                #     nameDict.update({person: 1})
-                # else:
-                #   nameDict[person] = nameDict.get(person) + 1
 
 def generate():
     global outputFrame, lock
@@ -68,14 +60,14 @@ def generate():
                bytearray(encodedImage) + b'\r\n')
 
 def displayInfo(names):
-    global wikiResults, socketio
-    del wikiResults[:]
+    global socketio
     webstump = '<table class = "table table-dark"><thead><tr><th>Name</th><th>Wiki Link</th></tr></thead>'
     for name in names:
         appearanceDict.update({name: appearanceDict.get(name, 0) + 1})
     dictKeys = appearanceDict.keys()
     for row in dictKeys:
-        webstump = webstump + ('<tr>'+ '<th>'+ row + '<th>' + '</tr>')
+        webstump = webstump + ('<tr>'+ '<th>'+ row + '</th>' + '<th>' + '{{ url_for(\'static\', filename=\''+ row +
+                               '/1.jpg\') }}' + '</th>'+'</tr>')
     webstump = webstump + '</table>'
     socketio.emit('newInfo', webstump)
 
