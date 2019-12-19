@@ -24,8 +24,6 @@ mt = modelTraining.TrainModel()
 
 print("INFO - LOADING VIDEO")
 video = cv2.VideoCapture("static/TestInput/ff.mp4")
-#try using cvlib to get all the frames the iterate over the list
-
 
 @app.route('/')
 def index():
@@ -59,15 +57,16 @@ def generate():
         yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
                bytearray(encodedImage) + b'\r\n')
 
+#Using websockets to update table on front end
 def displayInfo(names):
     global socketio
-    webstump = '<table class = "table table-dark"><thead><tr><th>Name</th><th>Wiki Link</th></tr></thead>'
+    webstump = '<table class = "table table-dark"><thead><tr><th>Name</th>' \
+               '<th>Number of Times Detected</th></tr></thead>'
     for name in names:
         appearanceDict.update({name: appearanceDict.get(name, 0) + 1})
     dictKeys = appearanceDict.keys()
     for row in dictKeys:
-        webstump = webstump + ('<tr>'+ '<th>'+ row + '</th>' + '<th>' + '{{ url_for(\'static\', filename=\''+ row +
-                               '/1.jpg\') }}' + '</th>'+'</tr>')
+        webstump = webstump + ('<tr>'+ '<th>'+ row + '</th>' + '<th>' + str(appearanceDict.get(row)) + '</th>'+'</tr>')
     webstump = webstump + '</table>'
     socketio.emit('newInfo', webstump)
 

@@ -43,15 +43,19 @@ class ExtractEmbedding:
             faceDetector.setInput(imageBlob)
             detections = faceDetector.forward()
 
+            #Finding the most likely detection
             mostLikelyToHaveFace = np.argmax(detections[0, 0, :, 2])
             confidence = detections[0, 0, mostLikelyToHaveFace, 2]
 
+            #Ingoring low confidence detections a
             if confidence > baseConfidence:
+                #Finding bounds of face
                 box = detections[0, 0, mostLikelyToHaveFace, 3:7] * np.array([w, h, w, h])
                 (startX, startY, endX, endY) = box.astype("int")
                 face = image[startY:endY, startX:endX]
                 (fH, fW) = face.shape[:2]
 
+                #Ensuring that face found is not too small
                 if fH < 20 or fW < 20:
                     continue
 
@@ -59,7 +63,7 @@ class ExtractEmbedding:
                                                  (96, 96), (0, 0, 0), swapRB=True, crop=False)
                 embedder.setInput(faceBlob)
                 vec = embedder.forward()
-
+                
                 knownNames.append(name)
                 knownFaces.append(vec.flatten())
 

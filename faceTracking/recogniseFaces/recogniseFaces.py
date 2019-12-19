@@ -36,7 +36,6 @@ class RecogniseFaces:
                                           (104.0, 177.0, 123.0), swapRB=False, crop=False)
         self.faceDetector.setInput(imageBlob)
         detections = self.faceDetector.forward()
-
         for i in range(0, detections.shape[2]):
             confidence = detections[0, 0, i, 2]
             if confidence > self.baseConfidence:
