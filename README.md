@@ -1,8 +1,8 @@
-##Python version
+#Python version
 <div><b>Python 3.6.8</b></div>
 
 
-##External libraries needed
+#External libraries needed
 <ol>
   <li>numpy</li>
   <li>opencv-contrib-python</li>
@@ -15,7 +15,7 @@
   <li>imutils</li>
 </ol>
 
-##Usage
+#Usage
 ```bash
 python app.py -i <path_to_input_video>
 ```
