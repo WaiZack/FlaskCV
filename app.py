@@ -7,7 +7,6 @@ from flask import Flask
 from flask import render_template
 import cv2
 import threading
-import wikipedia as wp
 from flask_socketio import SocketIO
 
 outputFrame = None
