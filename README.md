@@ -1,7 +1,8 @@
-Python version <br><br>
-Python 3.6.8
+##Python version
+<div><b>Python 3.6.8</b></div>
 
-External libraries needed <br>
+
+##External libraries needed
 <ol>
   <li>numpy</li>
   <li>opencv-contrib-python</li>
@@ -13,5 +14,12 @@ External libraries needed <br>
   <li>flask-socketio</li>
   <li>imutils</li>
 </ol>
+
+##Usage
+```bash
+python app.py -i <path_to_input_video>
+```
+
+
   
   
