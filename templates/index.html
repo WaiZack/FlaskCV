@@ -29,19 +29,32 @@
     <div class="container">
         <div class="row">
             <div class="col-8">
-                <img src="{{ url_for('render') }}" class="img-fluid" align="centre">
+                <img src="{{ url_for('render') }}" class="img-fluid" id="video">
             </div>
-            <div class="col-4">
-                <h1>test</h1>
+            <div class="col-4" id="wikiInfo">
+                <p>Actors that have been detected</p>
+                <div id="wiki"></div>
             </div>
         </div>
     </div>
 </div>
 
-
 <!-- Bootstrap core JavaScript -->
-<script src="{{ url_for('static', filename='js/jquery.slim.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/socket.io.slim.js') }}"></script>
+
+<script>
+$(document).ready(function(){
+    // start up the SocketIO connection to the server
+    var socket = io.connect('http://127.0.0.1:5000');
+    socket.on('newInfo', function(msg) {
+        $('#wiki').html(msg)
+    });
+
+});
+</script>
+
 
 </body>
 

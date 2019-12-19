@@ -8,6 +8,7 @@ from sklearn.svm import SVC
 class TrainModel:
 
     def execute(self):
+        print("INFO - FITTING MODELS")
         data = pickle.loads(open("static/Embeddings/faceEmbeddings.pickle", "rb").read())
 
         labelEncoder = LabelEncoder()

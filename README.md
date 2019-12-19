@@ -9,6 +9,7 @@ External libraries needed <br>
   <li>scikit-learn</li>
   <li>cvlib</li>
   <li>tensorflow</li>
+  <li>matplotlib</li>
 </ol>
   
   

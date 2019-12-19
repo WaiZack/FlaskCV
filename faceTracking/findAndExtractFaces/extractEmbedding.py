@@ -10,23 +10,27 @@ import os
 class ExtractEmbedding:
 
     def extraction(self):
-        baseConfidence = 0.5
+        baseConfidence = 0.7
 
         # Face Detector
+        print("INFO - INITIALISING FACE DETECTOR")
         protoPath = "static/PretrainedModels/face/deploy.prototxt.txt"
         modelPath = "static/PretrainedModels/face/res10_300x300_ssd_iter_140000.caffemodel"
         faceDetector = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
 
         # Face Embedder
+        print("INFO - INITIALISING FACE RECOGNISER")
         embedder = cv2.dnn.readNetFromTorch("static/PretrainedModels/face/nn4.small2.v1.t7")
 
         # Getting Training Images
+        print("INFO - GETTING FACES")
         imageLocation = "static/TrainingFaces"
         imagePaths = list(paths.list_images(imageLocation))
 
         knownFaces = []
         knownNames = []
 
+        print("INFO - PROCESSING FACES")
         for i, imagePath in enumerate(imagePaths):
             name = imagePath.split(os.path.sep)[-2]
 
@@ -59,7 +63,8 @@ class ExtractEmbedding:
                 knownNames.append(name)
                 knownFaces.append(vec.flatten())
 
-                data = {"embeddings": knownFaces, "names": knownNames}
-                f = open("static/Embeddings/faceEmbeddings.pickle", "wb")
-                f.write(pickle.dumps(data))
-                f.close()
+        print("INFO - MATCHING FACES AND LABELS")
+        data = {"embeddings": knownFaces, "names": knownNames}
+        f = open("static/Embeddings/faceEmbeddings.pickle", "wb")
+        f.write(pickle.dumps(data))
+        f.close()
